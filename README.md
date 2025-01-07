@@ -63,7 +63,10 @@ then slide `mkFlake` between your outputs function head and body,
 
 ```nix
   outputs = inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake {
+      inherit inputs;
+      moduleLocation = ./flake.nix;
+    } {
       flake = {
         # Put your original flake attributes here.
       };
