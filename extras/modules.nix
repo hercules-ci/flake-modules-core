@@ -66,4 +66,11 @@ in
       apply = mapAttrs (k: mapAttrs (addInfo k));
     };
   };
+  config = {
+    # Copy over to old nixosModules and hmModules attributes
+    flake = {
+      nixosModules = lib.optional (lib.hasAttr "nixos" lib.flake.modules) lib.flake.modules.nixos;
+      hmModules = lib.optional (lib.hasAttr "homeManager" lib.flake.modules) lib.flake.modules.homeManager;
+    };
+  };
 }
