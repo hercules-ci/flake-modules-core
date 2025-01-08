@@ -14,10 +14,10 @@ let
     then module: module
     else
       module:
-      # TODO: set key?
       {
         _class = class;
         _file = "${toString moduleLocation}#modules.${escapeNixIdentifier class}.${escapeNixIdentifier moduleName}";
+        key = "${toString moduleLocation}#modules.${escapeNixIdentifier class}.${escapeNixIdentifier moduleName}";
         imports = [ module ];
       };
 in
